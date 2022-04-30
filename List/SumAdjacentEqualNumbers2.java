@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,27 +9,28 @@ public class SumAdjacentEqualNumbers2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        List<Integer> numbers = Arrays.stream(scanner.nextLine().split("\\s+"))
-                .map(Integer::parseInt)
+        List<Double> numbers = Arrays.stream(scanner.nextLine().split("\\s+"))
+                .map(Double::parseDouble)
                 .collect(Collectors.toList());
 
-        List<Integer> nextNumbers = sumAdjacentEqualNumbers(numbers);
+        List<Double> nextNumbers = sumAdjacentEqualNumbers(numbers);
         while (nextNumbers.size() != numbers.size()) {
             numbers = nextNumbers;
             nextNumbers = sumAdjacentEqualNumbers(numbers);
         }
-        for (Integer number : numbers) {
-            System.out.print(number + " ");
+
+        for (Double number : numbers) {
+            System.out.print(new DecimalFormat("0.#").format(number)+" ");
         }
     }
 
-    private static List<Integer> sumAdjacentEqualNumbers(List<Integer> numbers) {
-        List<Integer> nextNumber = new ArrayList<>();
+    private static List<Double> sumAdjacentEqualNumbers(List<Double> numbers) {
+        List<Double> nextNumber = new ArrayList<>();
 
         int i = 0;
         while (i < numbers.size()) {
 
-            if (i < numbers.size() - 1 && numbers.get(1) == numbers.get(i + 1)) {
+            if (i < numbers.size() - 1 && numbers.get(i).equals(numbers.get(i + 1))) {
                 nextNumber.add(numbers.get(i) + numbers.get(i + 1));
                 i += 2;
             } else {
