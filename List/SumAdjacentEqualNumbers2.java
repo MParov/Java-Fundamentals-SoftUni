@@ -20,7 +20,7 @@ public class SumAdjacentEqualNumbers2 {
         }
 
         for (Double number : numbers) {
-            System.out.print(new DecimalFormat("0.#").format(number));
+            System.out.print(new DecimalFormat("0.#").format(number)+" ");
         }
     }
 
